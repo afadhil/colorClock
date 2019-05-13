@@ -10,65 +10,85 @@ Released under the MIT license: http://jsbin.mit-license.org
 <meta name="robots" content="noindex">
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <link href="https://fonts.googleapis.com/css?family=Germania+One" rel="stylesheet">
-  <title>JS Bin</title>
-<style id="jsbin-css">
-html, body {
-  height: 100%;
-}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<link href="https://fonts.googleapis.com/css?family=Germania+One" rel="stylesheet">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+	<title>Just a kidding art by me :p</title>
+	<script
+	  src="https://code.jquery.com/jquery-3.4.1.min.js"
+	  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	  crossorigin="anonymous"></script>
 
-* {
-  margin: 0;
-  padding: 0;
-}
+	<style id="jsbin-css">
+		html, body {
+			height: 100%;
+		}
 
-#clock {
-  text-align: center;
-  position: relative;
-  top: 50%;
-  font-size: 7em;
-  margin-top: -.5em;
-  color: cornsilk;
-  font-family: 'Germania One', cursive;C
-}
-</style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#clock {
+			text-align: center;
+			position: relative;
+			top: 50%;
+			font-size: 6.5em;
+			margin-top: -.5em;
+			color: cornsilk;
+			font-family: 'Germania One', cursive;
+		}
+	</style>
 </head>
 <body>
-  <div id="clock"></div>
-<script id="jsbin-javascript">
-function colorClock(){
-  var date = new Date();
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
-  var seconds = date.getSeconds();
+	<div id="clock"></div>
+	<script id="jsbin-javascript">
 
-  if (hours <= 9) {
-    hours = '0' + hours;
-  }
-  if (minutes <= 9) {
-    minutes = '0' + minutes;
-  }
-  if (seconds <= 9) {
-    seconds = '0' + seconds;
-  }
+		var count = 0;
+		var randH = Math.floor(Math.random() * 255) + 1;
+		var randM = Math.floor(Math.random() * 4) + 1;
+		var gColor = Math.floor(Math.random() * 60) + 1;
 
-  var clockFace = hours + ':' + minutes + ':' + seconds;
-  
-  var hexColor = '#' + 'af' + minutes + seconds;
-  document.body.style.background = hexColor;
-  
-  
-  document.getElementById('clock').innerHTML = clockFace;
-  
-  setTimeout(function() {
-    colorClock();
-  }, 1000);
-  
-}
+		function colorClock(){
+			var date = new Date();
+			var hours = date.getHours();
+			var minutes = date.getMinutes();
+			var seconds = date.getSeconds();
 
-colorClock();
-</script>
+			if (hours <= 9) {
+				hours = '0' + hours;
+			}
+			if (minutes <= 9) {
+				minutes = '0' + minutes;
+			}
+			if (seconds <= 9) {
+				seconds = '0' + seconds;
+			}
+
+			var rgbColor = 'rgb('+randH+','+gColor+','+(seconds*4)+')';
+
+			if (seconds == 0) {
+				randH = Math.floor(Math.random() * 255) + 1;
+				gColor = (Math.floor(Math.random() * 4) + 1) * minutes;
+				// $("body").animate({background: rgbColor}, 3000);
+				rgbColor = 'rgb('+randH+','+gColor+','+(seconds*4)+')';
+				document.body.style.transition = "all .8s ease .75s";
+				document.body.style.background = rgbColor;
+			} else {
+				document.body.style.transition = "background .2s";
+				document.body.style.background = rgbColor;
+			}
+			var clockFace = hours + ':' + minutes + ':' + seconds;
+			document.getElementById('clock').innerHTML = clockFace;
+
+			setTimeout(function() {
+				colorClock();
+			}, 1000);
+			console.log(rgbColor);
+		}
+
+		colorClock();
+	</script>
 </body>
 </html>
