@@ -1,3 +1,3 @@
 # colorClock
 
-open on http://colorclock.afadhil.com
+you could open for preview on http://colorclock.afadhil.com
