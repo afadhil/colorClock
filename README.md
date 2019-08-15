@@ -1,2 +1,3 @@
 # colorClock
-Trained by Codeberryschool
+
+open on http://colorclock.afadhil.com
